@@ -40,8 +40,8 @@ def staging(file, table, stage, database, schema, upload=True):
 		print('Uploading...')
 		con.cursor().execute(f"Put file://{file} {stage})
 		con.cursor().execute(f"""
-		COPY INTO {table} from {stage}/{file}.gz
-		file format='', error_on_column_count_mismatch=false, skip_header=1, null_if="", encoding='iso-8859-1'
+				COPY INTO {table} from {stage}/{file}.gz
+				file format='', error_on_column_count_mismatch=false, skip_header=1, null_if="", encoding='iso-8859-1'
 		""")
 	else:
 		print('Download...'
