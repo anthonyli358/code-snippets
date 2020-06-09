@@ -8,7 +8,7 @@
 myConnection = pymysql.connect(host='', user='', passwd='', db='')
 with myConnection.cursor() as cursor:
 	sql = f"""
-		  """
+		"""
 	cursor.execute(sql)
 	result = cursor.fetchall()
 	fieldnames = [i[0] for i in cursor.description]
@@ -24,7 +24,7 @@ df = pd.DataFrame(list(result), columns=field_names)
 con = snowflake.connector.connect(user='', password='', account='', warehouse_name='')
 con.cursor().execute(f"USE {database}/{schema})
 cur = con.cursor().execute(f"""
-			""")
+	""")
 con.cusor.close()
 df = pd.DataFrame.from_records(iter(cur), columns=[i[0] for i in cur.description])
 print('Done)
@@ -40,8 +40,8 @@ def staging(file, table, stage, database, schema, upload=True):
 		print('Uploading...')
 		con.cursor().execute(f"Put file://{file} {stage})
 		con.cursor().execute(f"""
-					COPY INTO {table} from {stage}/{file}.gz
-					file format='', error_on_column_count_mismatch=false, skip_header=1, null_if="", encoding='iso-8859-1'
+			COPY INTO {table} from {stage}/{file}.gz
+			file format='', error_on_column_count_mismatch=false, skip_header=1, null_if="", encoding='iso-8859-1'
 		""")
 	else:
 		print('Download...'
