@@ -10,7 +10,8 @@ df = pd.merge(df, df2, how='left', on='key')
 
 ```python
 df.groupby(['key1', key2']).agg(newvar = pd.NamedAgg(column = 'newvar', aggfunc='count'),
-								newvar2 = pd.NamedAgg(column = 'newvar2', aggfunc=lambda x: x.sum() / x.count()).reset_index()
+								newvar2 = pd.NamedAgg(column = 'newvar2', aggfunc=lambda x: x.sum() / x.count()
+								).reset_index()
 ```
 
 ### Manipulate cells 
