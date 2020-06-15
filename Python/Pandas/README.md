@@ -17,5 +17,5 @@ df.groupby(['key1', key2']).agg(newvar = pd.NamedAgg(column = 'newvar', aggfunc=
 ### Manipulate cells 
 
 ```python
-df.loc[(df['key'].isin(list)) & (df.['key2']==0)] = 1
+df.loc[(df['key'].isin(list)) & (df['key2']==0)] = 1
 ```
