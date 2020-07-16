@@ -13,6 +13,18 @@ rates->'rates'->>currency::varchar
 to_date(cast(created_at as TEXT), 'YYYY-MM-01') as year_mon,
 ```
 
+### Cast to mon, yyyy
+
+```sql
+to_char(date_trunc('month', created_at)::date,'MON, YYYY') AS month
+```
+
+### Cast to week
+
+```sql
+date_trunc('week', created_at::date) as week
+```
+
 ### Median (intepolate)
 
 ```sql
