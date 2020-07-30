@@ -1,6 +1,6 @@
 # SQL
 
-### Alisa tables
+### Alias tables
 
 ```sql
 select 
