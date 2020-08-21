@@ -24,11 +24,12 @@ temp_2 as (
 select * from temp_2
 ```
 
-### Union tables (same columns)
+### Union tables (same columns, keep duplicates)
 
 ```sql
 select * from table_1
-union select * from table_2
+union all select * from table_2
+-- 'union' to remove duplicates
 ```
 
 ### Filtered summary operations
