@@ -73,3 +73,49 @@ for i in range(0, len(data)//16000 + 1):
 	k += 16000
 print('Done')
 ```
+
+## PostgreSQL
+
+### AWS DB
+
+```python
+from sshtunnel import SSHTunnelForwarder  # run pip install sshtunnel
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+import paramiko
+import psycopg2  # run pip install psycopg2-binary
+
+import pandas as pd
+import json
+
+pkey = paramiko.RSAKey.from_private_key_file('<pkey_path>', password='pkey_password'])  # optional
+
+with SSHTunnelForwarder(
+    ('<server>', 22),  # remote server IP and SSH port
+    ssh_username='<username>',
+    ssh_pkey='<pkey_path>',  # or pkey if using paramiko line above
+    ssh_private_key_password='<pkey_password>'],  # not needed if using paramiko line above
+    remote_bind_address=('<host/socket>', 5432)) as server:  # PostgreSQL server IP and server port on remote machine
+        
+        server.start()  # start ssh sever
+        print('Server connected via SSH')
+
+        # connect to PostgreSQL
+        local_port = str(server.local_bind_port)
+        engine = create_engine('postgresql://<username>:<password>@127.0.0.1:' + local_port +'/<database_name>')
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        print('Database session created')
+
+        # test data retrieval
+        result = session.execute("""
+            SELECT * 
+            FROM <database_table>
+            LIMIT 10
+            """)
+
+        session.close()
+        
+df = pd.DataFrame(result.fetchall(), columns=result.keys())
+print(df)
+```
