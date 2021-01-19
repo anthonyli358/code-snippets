@@ -88,13 +88,13 @@ import psycopg2  # run pip install psycopg2-binary
 import pandas as pd
 import json
 
-pkey = paramiko.RSAKey.from_private_key_file('<pkey_path>', password='pkey_password'])  # optional
+pkey = paramiko.RSAKey.from_private_key_file('<pkey_path>', password='<pkey_password>'])  # optional
 
 with SSHTunnelForwarder(
     ('<server>', 22),  # remote server IP and SSH port
     ssh_username='<username>',
     ssh_pkey='<pkey_path>',  # or pkey if using paramiko line above
-    ssh_private_key_password='<pkey_password>'],  # not needed if using paramiko line above
+    ssh_private_key_password='<pkey_password>',  # not needed if using paramiko line above
     remote_bind_address=('<host/socket>', 5432)) as server:  # PostgreSQL server IP and server port on remote machine
         
         server.start()  # start ssh sever
