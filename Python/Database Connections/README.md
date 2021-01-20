@@ -86,7 +86,6 @@ import paramiko
 import psycopg2  # run pip install psycopg2-binary
 
 import pandas as pd
-import json
 
 # pkey = private key
 pkey = paramiko.RSAKey.from_private_key_file('<pkey_path>', password='<pkey_password>')  # optional
