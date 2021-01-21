@@ -42,11 +42,8 @@ generate_series('2019-12-01', now(), '1 day'::interval) as day
 ```sql
 (select *
 from (values
-    ('Deel', date('2019-07-01')),
-    ('jon@div-brands.com', date('2020-02-18')),
-    ('inna@a-labinsider.com', date('2020-02-06')),
-    ('nick+client12@letsdeel.com', date('2019-07-10')),
-    ('jonathan@amitree.com', date('2019-12-09')),
-    ('james@bettr.software', date('2020-01-01'))
-) AS t (email, join_date)
+    ('guitar', 'string'),
+    ('trumpet', 'brass'),
+    ('flute', 'woodwind'),
+) AS t (instrument, type)
 ```
