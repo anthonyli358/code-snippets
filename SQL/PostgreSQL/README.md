@@ -45,5 +45,5 @@ from (values
     ('guitar', 'string'),
     ('trumpet', 'brass'),
     ('flute', 'woodwind'),
-) AS t (instrument, type)
+) AS t (instrument, type))
 ```
